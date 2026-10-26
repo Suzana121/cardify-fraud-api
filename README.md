@@ -10,8 +10,9 @@ It rebuilds the core of my final project,
 (Flask + Firebase + Isolation Forest), as a production-style service:
 PostgreSQL instead of Firestore, migrations, JWT auth, automated tests, Docker, CI and cloud deployment.
 
-**Live demo:** _add the Render URL here_ · interactive docs at `/docs`
-(demo login: `demo@cardify.dev` / `demo-pass-123`)
+**Live demo:** [cardify-fraud-api.onrender.com/docs](https://cardify-fraud-api.onrender.com/docs)
+(demo login: `demo@cardify.dev` / `demo-pass-123`; on the free tier the first request after
+idle time can take about a minute while the server wakes up)
 
 ## Tech stack
 
