@@ -1,0 +1,31 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: cardify
+      POSTGRES_PASSWORD: cardify
+      POSTGRES_DB: cardify
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./docker/initdb:/docker-entrypoint-initdb.d:ro  # also creates cardify_test
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cardify -d cardify"]
+      interval: 2s
+      timeout: 3s
+      retries: 15
+
+  api:
+    build: .
+    environment:
+      DATABASE_URL: postgresql+psycopg://cardify:cardify@db:5432/cardify
+      JWT_SECRET: local-dev-secret-change-me-please-0123456789
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  pgdata:
