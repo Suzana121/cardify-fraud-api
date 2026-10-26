@@ -13,6 +13,9 @@ services:
           property: connectionString
       - key: JWT_SECRET
         generateValue: true
+      # Free tier has no Shell, so the demo user + transactions are loaded on startup.
+      - key: SEED_DEMO
+        value: "true"
 
 databases:
   - name: cardify-db

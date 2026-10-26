@@ -116,8 +116,8 @@ ruff check . && ruff format --check .
 
 [`render.yaml`](render.yaml) is a Render Blueprint: in Render choose **New → Blueprint**, pick this repo,
 and it creates the web service (built from the Dockerfile) plus a Postgres database, with a generated `JWT_SECRET`.
-Migrations run automatically on every start. To load the demo data, open the service **Shell** and run
-`python -m scripts.seed`.
+Migrations run automatically on every start. With `SEED_DEMO=true` (set in the blueprint) the demo user and
+its transactions are loaded on the first start; later starts skip it because the demo user already exists.
 
 > Render's free Postgres expires after 30 days. For a long-lived demo, use a free [Neon](https://neon.tech)
 > database instead and set its connection string as `DATABASE_URL`.

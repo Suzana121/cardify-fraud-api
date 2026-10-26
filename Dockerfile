@@ -26,5 +26,5 @@ COPY scripts ./scripts
 USER appuser
 EXPOSE 8000
 
-# Apply pending migrations, then serve. Render injects $PORT.
-CMD ["sh", "-c", "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port ${PORT}"]
+# Migrate, seed if SEED_DEMO=true, then serve. Render injects $PORT.
+CMD ["sh", "scripts/start.sh"]
